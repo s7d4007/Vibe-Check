@@ -58,9 +58,167 @@ body {
     font-weight: 300;
 }
 
+.welcome-container {
+    padding: 40px 30px;
+    animation: fadeIn 0.6s ease-out;
+}
+
+.welcome-card {
+    text-align: center;
+}
+
+.welcome-title {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+}
+
+.welcome-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 35px;
+}
+
+.input-group {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.input-label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+}
+
+.text-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition);
+    background: white;
+}
+
+.text-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.text-input::placeholder {
+    color: #a0aec0;
+}
+
+.age-slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 10px;
+    background: #e2e8f0;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.age-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+    transition: var(--transition);
+}
+
+.age-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.age-slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--primary-gradient);
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+    transition: var(--transition);
+}
+
+.age-slider::-moz-range-thumb:hover {
+    transform: scale(1.1);
+}
+
+.age-range-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+#ageValue {
+    font-weight: 700;
+    color: #667eea;
+}
+
+.privacy-notice {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #f7fafc;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.privacy-icon {
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.privacy-notice p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.start-btn {
+    width: 100%;
+    padding: 16px 28px;
+    background: var(--primary-gradient);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.start-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.start-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 .progress-container {
     padding: 20px 30px;
     background: white;
+    transition: var(--transition);
 }
 
 .progress-bar {
@@ -223,6 +381,7 @@ body {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    transition: var(--transition);
 }
 
 .vibe-index {
@@ -449,6 +608,14 @@ body {
         font-size: 2rem;
     }
 
+    .welcome-title {
+        font-size: 1.5rem;
+    }
+
+    .welcome-subtitle {
+        font-size: 1rem;
+    }
+
     .question-text {
         font-size: 1.25rem;
     }
@@ -486,6 +653,15 @@ body {
     .action-btn {
         max-width: 100%;
     }
+
+    .privacy-notice {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .privacy-notice p {
+        text-align: center;
+    }
 }
 
 @media (max-width: 480px) {
@@ -497,6 +673,14 @@ body {
         padding: 25px 15px;
     }
 
+    .welcome-container {
+        padding: 30px 20px;
+    }
+
+    .welcome-title {
+        font-size: 1.75rem;
+    }
+
     .quiz-container,
     .results-container {
         padding: 20px 15px;
@@ -504,5 +688,13 @@ body {
 
     .results-title {
         font-size: 1.5rem;
+    }
+
+    .input-group {
+        margin-bottom: 25px;
+    }
+
+    .privacy-notice {
+        padding: 14px;
     }
 }

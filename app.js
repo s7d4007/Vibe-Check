@@ -160,10 +160,18 @@ let totalScores = {
     energy: 0,
     deep: 0
 };
+let userName = '';
+let userAge = 25;
 
 // DOM Elements
+const welcomeContainer = document.getElementById('welcomeContainer');
 const quizContainer = document.getElementById('quizContainer');
 const resultsContainer = document.getElementById('resultsContainer');
+const progressContainer = document.getElementById('progressContainer');
+const nameInput = document.getElementById('nameInput');
+const ageSlider = document.getElementById('ageSlider');
+const ageValue = document.getElementById('ageValue');
+const startBtn = document.getElementById('startBtn');
 const questionText = document.getElementById('questionText');
 const optionsContainer = document.getElementById('optionsContainer');
 const backBtn = document.getElementById('backBtn');
@@ -180,6 +188,23 @@ const shareBtn = document.getElementById('shareBtn');
 const retakeBtn = document.getElementById('retakeBtn');
 const toast = document.getElementById('toast');
 
+// Initialize Welcome Screen
+function initWelcome() {
+    // Reset state
+    userName = '';
+    userAge = 25;
+    nameInput.value = '';
+    ageSlider.value = 25;
+    ageValue.textContent = '25';
+    startBtn.disabled = true;
+    
+    // Show welcome screen
+    welcomeContainer.classList.remove('hidden');
+    quizContainer.classList.add('hidden');
+    resultsContainer.classList.add('hidden');
+    progressContainer.classList.add('hidden');
+}
+
 // Initialize Quiz
 function initQuiz() {
     currentQuestion = 0;
@@ -191,6 +216,12 @@ function initQuiz() {
         energy: 0,
         deep: 0
     };
+    
+    // Hide welcome, show quiz
+    welcomeContainer.classList.add('hidden');
+    quizContainer.classList.remove('hidden');
+    progressContainer.classList.remove('hidden');
+    
     showQuestion();
 }
 
@@ -309,7 +340,13 @@ function calculateResults() {
 function displayResults(vibeIndexValue, category) {
     // Hide quiz, show results
     quizContainer.classList.add('hidden');
+    progressContainer.classList.add('hidden');
     resultsContainer.classList.remove('hidden');
+    
+    // Personalize with user's name
+    const greeting = userName ? `Hey ${userName}!` : 'Hey there!';
+    const resultsTitle = document.getElementById('resultsTitle');
+    resultsTitle.textContent = `${greeting} Your Vibe`;
     
     // Animate vibe index
     animateValue(vibeIndex, 0, vibeIndexValue, 1500);
@@ -390,7 +427,11 @@ function shareResult() {
     const vibeIndexValue = vibeIndex.textContent;
     const categoryName = vibeCategory.textContent;
     
-    const shareText = `✨ My Vibe Check Result: ${vibeIndexValue}/100 - ${categoryName}\n\nFind your vibe at vibecheck.app`;
+    let shareText = `✨ `;
+    if (userName) {
+        shareText += `${userName}'s `;
+    }
+    shareText += `Vibe Check Result: ${vibeIndexValue}/100 - ${categoryName}\n\nFind your vibe at vibecheck.app`;
     
     navigator.clipboard.writeText(shareText).then(() => {
         showToast();
@@ -418,8 +459,34 @@ function showToast() {
 // Retake Quiz
 function retakeQuiz() {
     resultsContainer.classList.add('hidden');
-    quizContainer.classList.remove('hidden');
-    initQuiz();
+    // Reset results title
+    const resultsTitle = document.getElementById('resultsTitle');
+    resultsTitle.textContent = 'Your Vibe';
+    initWelcome();
+}
+
+// Welcome Screen Event Listeners
+nameInput.addEventListener('input', (e) => {
+    userName = e.target.value.trim();
+    validateWelcomeForm();
+});
+
+ageSlider.addEventListener('input', (e) => {
+    userAge = parseInt(e.target.value);
+    ageValue.textContent = userAge;
+    validateWelcomeForm();
+});
+
+startBtn.addEventListener('click', () => {
+    if (userName && userAge) {
+        initQuiz();
+    }
+});
+
+// Validate Welcome Form
+function validateWelcomeForm() {
+    const isValid = userName.length > 0 && userAge >= 13;
+    startBtn.disabled = !isValid;
 }
 
 // Event Listeners
@@ -438,4 +505,4 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Initialize on load
-initQuiz();
+initWelcome();

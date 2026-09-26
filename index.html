@@ -13,16 +13,45 @@
             <p class="tagline">Discover your unique personality vibe</p>
         </header>
 
-        <!-- Progress Bar -->
-        <div class="progress-container">
+        <!-- Welcome Screen -->
+        <div class="welcome-container" id="welcomeContainer">
+            <div class="welcome-card">
+                <h2 class="welcome-title">Let's get started!</h2>
+                <p class="welcome-subtitle">Tell us a bit about yourself</p>
+                
+                <div class="input-group">
+                    <label for="nameInput" class="input-label">Your Name</label>
+                    <input type="text" id="nameInput" class="text-input" placeholder="Enter your name" autocomplete="off">
+                </div>
+                
+                <div class="input-group">
+                    <label for="ageSlider" class="input-label">Your Age: <span id="ageValue">25</span></label>
+                    <input type="range" id="ageSlider" class="age-slider" min="13" max="100" value="25" autocomplete="off">
+                    <div class="age-range-labels">
+                        <span>13</span>
+                        <span>100</span>
+                    </div>
+                </div>
+                
+                <div class="privacy-notice">
+                    <span class="privacy-icon">🔒</span>
+                    <p>Your information is not stored anywhere. All data stays on your device and is deleted when you close this page.</p>
+                </div>
+                
+                <button class="start-btn" id="startBtn" disabled>Start Vibe Check →</button>
+            </div>
+        </div>
+
+        <!-- Progress Bar (Hidden Initially) -->
+        <div class="progress-container hidden" id="progressContainer">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
             <span class="progress-text" id="progressText">Question 1 of 12</span>
         </div>
 
-        <!-- Quiz Container -->
-        <div class="quiz-container" id="quizContainer">
+        <!-- Quiz Container (Hidden Initially) -->
+        <div class="quiz-container hidden" id="quizContainer">
             <div class="question-card" id="questionCard">
                 <h2 class="question-text" id="questionText"></h2>
                 <div class="options-container" id="optionsContainer"></div>
@@ -36,7 +65,7 @@
         <!-- Results Container (Hidden Initially) -->
         <div class="results-container hidden" id="resultsContainer">
             <div class="results-card">
-                <h2 class="results-title">Your Vibe</h2>
+                <h2 class="results-title" id="resultsTitle">Your Vibe</h2>
                 <div class="vibe-index" id="vibeIndex"></div>
                 <div class="vibe-category" id="vibeCategory"></div>
                 <p class="vibe-description" id="vibeDescription"></p>
