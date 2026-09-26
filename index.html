@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Check - Discover Your Personality</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="logo">✨ Vibe Check</h1>
+            <p class="tagline">Discover your unique personality vibe</p>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-text" id="progressText">Question 1 of 12</span>
+        </div>
+
+        <!-- Quiz Container -->
+        <div class="quiz-container" id="quizContainer">
+            <div class="question-card" id="questionCard">
+                <h2 class="question-text" id="questionText"></h2>
+                <div class="options-container" id="optionsContainer"></div>
+                <div class="navigation-buttons">
+                    <button class="nav-btn back-btn" id="backBtn" disabled>← Back</button>
+                    <button class="nav-btn next-btn" id="nextBtn" disabled>Next →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Container (Hidden Initially) -->
+        <div class="results-container hidden" id="resultsContainer">
+            <div class="results-card">
+                <h2 class="results-title">Your Vibe</h2>
+                <div class="vibe-index" id="vibeIndex"></div>
+                <div class="vibe-category" id="vibeCategory"></div>
+                <p class="vibe-description" id="vibeDescription"></p>
+                
+                <div class="vibe-breakdown">
+                    <h3>Vibe Breakdown</h3>
+                    <div class="breakdown-chart" id="breakdownChart"></div>
+                </div>
+
+                <div class="result-card" id="resultCard">
+                    <div class="result-card-content">
+                        <span class="result-emoji">✨</span>
+                        <div class="result-score" id="resultScore"></div>
+                        <div class="result-category" id="resultCategory"></div>
+                        <p class="result-tagline">Find your vibe at vibecheck.app</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn share-btn" id="shareBtn">📋 Copy Result</button>
+                    <button class="action-btn retake-btn" id="retakeBtn">🔄 Retake Quiz</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div class="toast hidden" id="toast">Result copied to clipboard!</div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
