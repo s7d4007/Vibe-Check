@@ -18,12 +18,12 @@
             <div class="welcome-card">
                 <h2 class="welcome-title">Let's get started!</h2>
                 <p class="welcome-subtitle">Tell us a bit about yourself</p>
-                
+
                 <div class="input-group">
                     <label for="nameInput" class="input-label">Your Name</label>
                     <input type="text" id="nameInput" class="text-input" placeholder="Enter your name" autocomplete="off">
                 </div>
-                
+
                 <div class="input-group">
                     <label for="ageSlider" class="input-label">Your Age: <span id="ageValue">25</span></label>
                     <input type="range" id="ageSlider" class="age-slider" min="13" max="100" value="25" autocomplete="off">
@@ -32,27 +32,48 @@
                         <span>100</span>
                     </div>
                 </div>
-                
+
+                <!-- Creative Gender Picker -->
+                <div class="input-group">
+                    <label class="input-label">Your Vibe Energy</label>
+                    <div class="gender-picker">
+                        <div class="gender-track">
+                            <button class="gender-orb" id="genderOrb" data-gender="male" aria-label="Toggle gender">
+                                <span class="gender-icon-inner">♂</span>
+                            </button>
+                            <div class="gender-labels">
+                                <span class="gender-label left" id="labelMale">♂ He/Him</span>
+                                <span class="gender-label right" id="labelFemale">She/Her ♀</span>
+                            </div>
+                        </div>
+                        <p class="gender-hint" id="genderHint">Slide your energy → tap to switch</p>
+                    </div>
+                </div>
+
                 <div class="privacy-notice">
                     <span class="privacy-icon">🔒</span>
                     <p>Your information is not stored anywhere. All data stays on your device and is deleted when you close this page.</p>
                 </div>
-                
+
                 <button class="start-btn" id="startBtn" disabled>Start Vibe Check →</button>
             </div>
         </div>
 
-        <!-- Progress Bar (Hidden Initially) -->
+        <!-- Progress Bar -->
         <div class="progress-container hidden" id="progressContainer">
+            <div class="progress-header">
+                <span class="progress-text" id="progressText">Question 1 of 20</span>
+                <span class="xp-badge" id="xpBadge">⚡ 0 XP</span>
+            </div>
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
-            <span class="progress-text" id="progressText">Question 1 of 12</span>
         </div>
 
-        <!-- Quiz Container (Hidden Initially) -->
+        <!-- Quiz Container -->
         <div class="quiz-container hidden" id="quizContainer">
             <div class="question-card" id="questionCard">
+                <div class="question-number" id="questionNumber">Q1</div>
                 <h2 class="question-text" id="questionText"></h2>
                 <div class="options-container" id="optionsContainer"></div>
                 <div class="navigation-buttons">
@@ -62,22 +83,34 @@
             </div>
         </div>
 
-        <!-- Results Container (Hidden Initially) -->
+        <!-- Results Container -->
         <div class="results-container hidden" id="resultsContainer">
             <div class="results-card">
                 <h2 class="results-title" id="resultsTitle">Your Vibe</h2>
-                <div class="vibe-index" id="vibeIndex"></div>
+
+                <div class="score-ring-wrapper">
+                    <svg class="score-ring" viewBox="0 0 160 160" id="scoreRingSvg">
+                        <circle class="ring-bg" cx="80" cy="80" r="70"/>
+                        <circle class="ring-fill" cx="80" cy="80" r="70" id="ringFill"/>
+                    </svg>
+                    <div class="ring-center">
+                        <div class="vibe-index" id="vibeIndex">0</div>
+                        <div class="ring-label">Vibe Score</div>
+                    </div>
+                </div>
+
                 <div class="vibe-category" id="vibeCategory"></div>
                 <p class="vibe-description" id="vibeDescription"></p>
-                
+
                 <div class="vibe-breakdown">
                     <h3>Vibe Breakdown</h3>
                     <div class="breakdown-chart" id="breakdownChart"></div>
                 </div>
 
+                <!-- Shareable Card (used for canvas export) -->
                 <div class="result-card" id="resultCard">
                     <div class="result-card-content">
-                        <span class="result-emoji">✨</span>
+                        <span class="result-emoji" id="resultEmoji">✨</span>
                         <div class="result-score" id="resultScore"></div>
                         <div class="result-category" id="resultCategory"></div>
                         <p class="result-tagline">Find your vibe at vibecheck.app</p>
@@ -85,15 +118,22 @@
                 </div>
 
                 <div class="action-buttons">
+                    <button class="action-btn download-btn" id="downloadBtn">🖼️ Save as Image</button>
                     <button class="action-btn share-btn" id="shareBtn">📋 Copy Result</button>
-                    <button class="action-btn retake-btn" id="retakeBtn">🔄 Retake Quiz</button>
+                    <button class="action-btn retake-btn" id="retakeBtn">🔄 Retake</button>
                 </div>
             </div>
         </div>
 
         <!-- Toast Notification -->
         <div class="toast hidden" id="toast">Result copied to clipboard!</div>
+
+        <!-- XP Pop Animation -->
+        <div class="xp-pop hidden" id="xpPop">+10 XP</div>
     </div>
+
+    <!-- Hidden canvas for image export -->
+    <canvas id="exportCanvas" style="display:none;"></canvas>
 
     <script src="app.js"></script>
 </body>
